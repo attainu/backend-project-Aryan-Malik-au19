@@ -1,0 +1,131 @@
+<main>
+    <header>
+        <div class="title">
+            <img src="./icon/logo.png" width="35px">
+            <h1>TEXTIT</h1>
+        </div>
+        <button type="button" onclick="show_hide()">
+            <span class="material-icons menu">
+                menu
+            </span>
+        </button>
+    </header>
+    <div class="container" style="max-width: 100%;">
+        <div class="users-window">
+            <div class="users-head">
+                <h3>People </h3>
+                <h4 class="users-count">3</h4>
+            </div>
+            <div class="users-list">
+            </div>
+        </div>
+        <div class="chat-window">
+            <div class="chats">
+            </div>
+            <div class="user-input">
+                <input id="user-msg" type="text" placeholder="Type a message...">
+                <button type="button" id="user-send"><span class="material-icons">
+                        send
+                    </span>
+                </button>
+            </div>
+        </div>
+</main>
+
+<script src="/socket.io/socket.io.js">
+</script>
+
+<script>
+    var uwindow = document.querySelector('.users-window');
+    function show_hide() {
+        if (uwindow.style.display == 'block') {
+            uwindow.style.display = 'none';
+        }
+        else {
+            uwindow.style.display = 'block';
+        }
+    }
+    const socket = io()
+    const chats = document.querySelector(".chats")
+    const user_list = document.querySelector(".users-list")
+    const user_count = document.querySelector(".users-count")
+    const msg_send = document.querySelector("#user-send")
+    const user_msg = document.querySelector("#user-msg")
+
+    socket.emit("new-user-joined", `{{ Username }}`)
+
+    socket.on('user-connected', (socket_name) => {
+        userJoinLeft(socket_name, "joined")
+    })
+
+    function userJoinLeft(name, status) {
+        const div = document.createElement("div")
+        div.classList.add("user-join")
+        let content = `<p><b>${name}</b> ${status} the chat</p>`;
+        div.innerHTML = content;
+        chats.appendChild(div)
+        chats.scrollTop = chats.scrollHeight;
+    }
+
+
+    socket.on('user-disconnected', (user) => {
+        userJoinLeft(user, "left")
+    })
+
+    socket.on('user-list', (users) => {
+        user_list.innerHTML = ""
+        users_arr = Object.values(users)
+        for (i = 0; i < users_arr.length; i++) {
+            let p = document.createElement('p');
+            p.innerHTML = users_arr[i];
+            user_list.appendChild(p);
+        }
+        user_count.innerHTML = users_arr.length;
+    })
+
+
+    msg_send.addEventListener("click", () => {
+        let data = {
+            user: `{{ Username }}`,
+            msg: user_msg.value
+        };
+        if (user_msg.value != '') {
+            appendMessage(data, "outgoing")
+            socket.emit("message", data)
+            user_msg.value = ''
+        }
+    })
+
+    function getTime() {
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+
+        return strTime
+    }
+
+    function appendMessage(data, status) {
+        let div = document.createElement('div')
+        div.classList.add('message', status);
+        time = getTime()
+        let content = `
+        <div class="user_message">
+        <h4>${data.msg}</h4>
+        <h6>${data.user} <br>${time}</h6>
+        </div>
+            `;
+        div.innerHTML = content;
+        chats.appendChild(div);
+        chats.scrollTop = chats.scrollHeight;
+    }
+
+    socket.on('message', (data) => {
+        appendMessage(data, "incoming")
+    })
+
+</script>

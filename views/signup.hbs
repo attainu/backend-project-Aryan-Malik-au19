@@ -1,0 +1,26 @@
+<div class="cover">
+    <div class="form-container">
+        <h1 class="text-center display-5">SignUp</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <form action="/signup" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label><br>
+                    <input type="text" name="Username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="emailId" class="form-label">Email address:</label><br>
+                    <input type="text" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label><br>
+                    <input type="password" name="password" class="form-control" id="password" required>
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary mb-2">Signup</button>
+                    <br>
+                    <a href="/">Already have an account login</a>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>

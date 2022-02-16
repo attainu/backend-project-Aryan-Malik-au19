@@ -1,0 +1,394 @@
+p {
+  margin-bottom: 0 !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* ::-webkit-scrollbar {
+  display: none;
+}
+
+.cover {
+  background-image: url("https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  color: white;
+}
+
+.cover .form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 40% !important;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+main {
+  width: 100% !important;
+  overflow: hidden;
+}
+
+main header {
+  background-color: #242F3D;
+  color: #fff;
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main header .menu {
+  color: white;
+  padding-right: 10px;
+}
+
+main header div.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-left: 20px;
+}
+
+main header div.title h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 25px;
+  margin-left: 10px;
+  margin-bottom: 0 !important;
+}
+
+main header button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: none;
+}
+
+main div.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding: 0 !important;
+}
+
+main div.container div.users-window {
+  width: 350px;
+  color: #fff;
+  background-color: #0E1621;
+}
+
+main div.container div.users-window div.users-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 15px;
+  background-color: #2B5378;
+  padding: 5px 10px 0px 10px;
+}
+
+main div.container div.users-window div.users-list p {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px !important;
+}
+
+main div.container div.chat-window {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1523878288860-7ad281611901?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80");
+  background-size: cover;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main div.container div.chat-window div.chats {
+  height: 86.5vh;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+main div.container div.chat-window div.chats div.user-join {
+  font-size: 0.9rem;
+  color: #424242;
+  background-color: #fff;
+  border-radius: 50px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 7px 20px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+main div.container div.chat-window div.chats div.incoming {
+  margin-left: auto;
+  text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main div.container div.chat-window div.chats div.incoming .user_message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: black;
+  background-color: white;
+  border-radius: 15px 15px 15px 0px;
+  text-align: right;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+main div.container div.chat-window div.chats div.incoming .user_message h4 {
+  margin-bottom: 0 !important;
+  margin-left: 35px;
+}
+
+main div.container div.chat-window div.chats div.incoming .user_message h6 {
+  color: #242F3D;
+  text-align: left;
+  font-size: 0.9rem;
+  margin-bottom: 0 !important;
+}
+
+main div.container div.chat-window div.chats div.incoming .user_img {
+  border-radius: 100%;
+  width: 45px;
+}
+
+main div.container div.chat-window div.chats div.outgoing {
+  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main div.container div.chat-window div.chats div.outgoing .user_message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: auto;
+  color: #fff;
+  background-color: #2B5378;
+  border-radius: 15px 15px 0px 15px;
+  text-align: right;
+  padding: 5px 10px 5px 10px;
+  margin: 5px 10px 0 auto;
+}
+
+main div.container div.chat-window div.chats div.outgoing .user_message h4 {
+  margin-bottom: 0 !important;
+  margin-right: 35px;
+}
+
+main div.container div.chat-window div.chats div.outgoing .user_message h6 {
+  color: #00d0ffbd;
+  font-size: 0.9rem;
+  margin-bottom: 0 !important;
+}
+
+main div.container div.chat-window div.chats div.outgoing .user_img {
+  border-radius: 100%;
+  width: 45px;
+}
+
+main div.container div.chat-window div.user-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main div.container div.chat-window div.user-input #user-msg {
+  color: white;
+  font-size: 16px;
+  background-color: #242F3D;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  width: 100%;
+  color: white;
+  border-radius: 0;
+  height: 43px;
+}
+
+main div.container div.chat-window div.user-input button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0px 15px;
+  border: none;
+  outline: none;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background-color: #00bcd4;
+}
+
+@media screen and (max-width: 900px) {
+  .cover .form-container {
+    width: 80% !important;
+  }
+  main {
+    width: 95%;
+  }
+  main header button {
+    display: block;
+  }
+  main div.container {
+    position: relative;
+  }
+  main div.container div.users-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    z-index: 10;
+    -webkit-box-shadow: 0 15px 20px -20px black;
+            box-shadow: 0 15px 20px -20px black;
+    padding-bottom: 0;
+    display: none;
+  }
+  main div.container div.chat-window div.chats {
+    min-height: 88.5vh;
+  }
+  main div.container div.chat-window div.chats div.message {
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+  }
+  main div.container div.chat-window div.chats div.incoming {
+    margin-left: 0;
+  }
+  main div.container div.chat-window div.chats div.outgoing {
+    padding: 5px 10px 5px 55px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

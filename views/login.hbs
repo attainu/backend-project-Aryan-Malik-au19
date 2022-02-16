@@ -1,0 +1,52 @@
+<div class="cover">
+    <div class="form-container">
+        <h1 class="text-center display-5">login</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <form action="/login" method="POST" enctype="multipart/form-data">
+                <div class="mb-3" >
+                    <label for="emailId" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control" id="emailId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" required>
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary mb-2">Login</button><br>
+                    <a href="/signup">Create an account</a>
+                </center>
+            </form>
+        </div>
+    </div>
+    <div class="alert alert-danger" id="alert" role="alert"></div>
+</div>
+<style>
+    #alert {
+        position: fixed;
+        border: none;
+        border-radius: 0;
+        top: 0px;
+        width: 100%;
+        z-index: 100;
+        display: none;
+    }
+</style>
+<script differ>
+    var msg = `{{ Message }}` || "";
+    if (msg) {
+        showMessage('alert', msg);
+        console.log("hello")
+    }
+
+    function showMessage(elementId, message) {
+        document.getElementById(elementId).style.display = 'block';
+        console.log(elementId)
+        document.getElementById("alert").innerHTML = `<b>Warning!</b> ${message}`
+        setTimeout(`hide("${elementId}")`, 2000);
+    }
+
+    function hide(elementId) {
+        document.getElementById(elementId).style.display = 'none';
+    }
+
+</script>
