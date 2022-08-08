@@ -1,4 +1,3 @@
-$light-blue: #00bcd4;
 $light-grey: rgb(161, 160, 160);
 $dark-grey: #424242;
 $white: #fff;
@@ -14,7 +13,6 @@ p {
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 
     ::-webkit-scrollbar {
         display: none;
@@ -29,7 +27,7 @@ p {
 }
 
 .cover {
-    background-image: url("https://images.unsplash.com/photo-1506784693919-ef06d93c28d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    background-image: url("https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80");
     background-repeat: no-repeat;
     background-size: cover;
     position: fixed;
@@ -50,57 +48,71 @@ p {
         overflow: hidden;
         border-radius: 10px;
         padding: 30px;
+        form{
+            width: 70%;
+        }
+        a{ color: #0dfde9;
+            text-decoration: none;
+        }
+        a:hover{
+            color: rgb(247, 0, 0);
+        }
     }
 }
 
 main {
     width: 100% !important;
     overflow: hidden;
+    
+   
 
-    header {
-        background-color: #242F3D;
-        color: $white;
-        height: 35px;
-        @include flexing(row, space-between, center);
-
-        .menu {
-            color: white;
-            padding-right: 10px;
-        }
-
-        div.title {
-            @include flexing(row, flex-start, center);
-            margin-left: 20px;
-
-            h1 {
-                font-family: $font-heading;
-                font-size: 25px;
-                margin-left: 10px;
-                margin-bottom: 0 !important;
+    .container {
+        @include flexing(column, flex-start, stretch);
+        padding: 0 !important;
+        height: fit-content;
+        .header {
+            background-color: #10151a;
+            color: $white;
+            height: 40px;
+            z-index: 99;
+            box-shadow: 0px 10px 50px 5px #000000;
+            @include flexing(row, space-between, center);
+        
+            .menu {
+                color: white;
+                padding-right: 10px;
+            }
+    
+            div.title {
+                @include flexing(row, flex-start, center);
+                margin-left: 20px;
+    
+                h1 {
+                    font-family: $font-heading;
+                    font-size: 25px;
+                    margin-left: 10px;
+                    margin-bottom: 0 !important;
+                }
+            }
+    
+            button {
+                background-color: transparent;
+                border: none;
+                outline: none;
+                display: none;
             }
         }
-
-        button {
-            background-color: transparent;
-            border: none;
-            outline: none;
-            display: none;
-        }
-    }
-
-    div.container {
-        @include flexing(row, flex-start, stretch);
-        padding: 0 !important;
-
         div.users-window {
             width: 350px;
             color: $white;
+            z-index: 100;
             background-color: #0E1621;
+            
 
             div.users-head {
                 @include flexing(row, space-between, center);
                 margin-bottom: 15px;
-                background-color: #2B5378;
+                background-color: #196c63;
                 padding: 5px 10px 0px 10px;
             }
 
@@ -113,14 +125,18 @@ main {
         }
 
         div.chat-window {
-            display: flex;
+            @include flexing(row, normal, normal);
+            height: 38.55em;
             width: 100%;
-            background-image: url('https://images.unsplash.com/photo-1523878288860-7ad281611901?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
             background-size: cover;
-            flex-direction: column;
-            align-content: center;
-            align-items: stretch;
-            justify-content: flex-end;
+
+            div.chat-box{
+                @include flexing(column, space-between, normal);
+                background-image: url('https://images.unsplash.com/photo-1622737133809-d95047b9e673?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80');
+                background-size:cover;
+                background-position: center;
+                flex: 2;
+            }
 
             div.chats {
                 height: 86.5vh;
@@ -149,11 +165,19 @@ main {
                         background-color: white;
                         border-radius: 15px 15px 15px 0px;
                         text-align: right;
-                        margin-left: 10px;
-                        margin-top: 5px;
+                        margin: 5px 10px 0 10px;
                         padding: 5px 10px 5px 10px;
+                        animation: fadeOut 0.5s ease-in-out;
+                        @keyframes fadeOut {
+                            0% {
+                                transform: translateX(0%);
+                            }
+                            100% {
+                                transform: translateX(100%);
+                            }
+                        }
 
-                        h4 {
+                        h5 {
                             margin-bottom: 0 !important;
                             margin-left: 35px;
                         }
@@ -180,19 +204,29 @@ main {
                         @include flexing(row, space-between, center);
                         margin-left: auto;
                         color: $white;
-                        background-color: #2B5378;
+                        background-color: #000000a8;
                         border-radius: 15px 15px 0px 15px;
                         text-align: right;
                         padding: 5px 10px 5px 10px;
                         margin: 5px 10px 0 auto;
+                        animation: comeIn 0.5s ease-in-out;
 
-                        h4 {
+                        @keyframes comeIn {
+                            0% {
+                                transform: translateX(100%);
+                            }
+                            100% {
+                                transform: translateX(0);
+                            }
+                        }
+
+                        h5 {
                             margin-bottom: 0 !important;
                             margin-right: 35px;
                         }
 
                         h6 {
-                            color: #00d0ffbd;
+                            color: #00ffdc;
                             font-size: 0.9rem;
                             margin-bottom: 0 !important;
                         }
@@ -206,16 +240,17 @@ main {
             }
 
             div.user-input {
-                @include flexing(row, space-between, stretch);
+                @include flexing(row, normal, normal);
 
                 #user-msg {
                     color: white;
                     font-size: $fsize;
-                    background-color: #242F3D;
+                    background-color: #0E1621;
                     padding: 10px 20px;
                     outline: none;
                     border: none;
                     width: 100%;
+                    border-left: 1px solid #3a4758;
                     color: white;
                     border-radius: 0;
                     height: 43px;
@@ -231,7 +266,7 @@ main {
                     outline: none;
                     letter-spacing: 0.5px;
                     color: $white;
-                    background-color: $light-blue;
+                    background-color: #196c63;
                 }
             }
         }

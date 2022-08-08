@@ -1,6 +1,8 @@
 <div class="cover">
+
+    <div class="alert alert-danger" id="alert" role="alert"></div>
     <div class="form-container">
-        <h1 class="text-center display-5">SignUp</h1>
+        <h1 class="text-center display-5">Sign up</h1>
         <div class="d-flex justify-content-center align-items-center">
             <form action="/signup" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
@@ -15,12 +17,42 @@
                     <label for="password" class="form-label">Password:</label><br>
                     <input type="password" name="password" class="form-control" id="password" required>
                 </div>
-                <center>
-                    <button type="submit" class="btn btn-primary mb-2">Signup</button>
-                    <br>
-                    <a href="/">Already have an account login</a>
-                </center>
+                <div class="d-flex flex-column align-items-center" style="color:lightgray">
+                    <button type="submit" class="btn btn-primary w-50 mb-2">Signup</button>
+                    <br>If you already have an account,
+                    <a href="/">Log in</a>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<style>
+    #alert {
+        position: fixed;
+        border: none;
+        border-radius: 0;
+        top: 0px;
+        width: 100%;
+        z-index: 100;
+        display: none;
+    }
+</style>
+<script differ>
+    var msg = `{{ Message }}` || "";
+    if (msg) {
+        showMessage('alert', msg);
+        console.log("hello")
+    }
+
+    function showMessage(elementId, message) {
+        document.getElementById(elementId).style.display = 'block';
+        console.log(elementId)
+        document.getElementById("alert").innerHTML = `<b>Alert!</b> ${message}`
+        setTimeout(`hide("${elementId}")`, 2000);
+    }
+
+    function hide(elementId) {
+        document.getElementById(elementId).style.display = 'none';
+    }
+
+</script>

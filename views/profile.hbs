@@ -1,33 +1,36 @@
 <main>
-    <header>
-        <div class="title">
-            <img src="./icon/logo.png" width="35px">
-            <h1>TEXTIT</h1>
-        </div>
-        <button type="button" onclick="show_hide()">
-            <span class="material-icons menu">
-                menu
-            </span>
-        </button>
-    </header>
+
     <div class="container" style="max-width: 100%;">
-        <div class="users-window">
-            <div class="users-head">
-                <h3>People </h3>
-                <h4 class="users-count">3</h4>
+        <div class="header">
+            <div class="title">
+                <img src="./icon/logo.png" width="35px">
+                <h1>TEXTIT</h1>
             </div>
-            <div class="users-list">
-            </div>
+            <button type="button" onclick="show_hide()">
+                <span class="material-icons menu">
+                    menu
+                </span>
+            </button>
         </div>
         <div class="chat-window">
-            <div class="chats">
+            <div class="users-window">
+                <div class="users-head">
+                    <h5>Active Now</h5>
+                    <h5 class="users-count">3</h5>
+                </div>
+                <div class="users-list">
+                </div>
             </div>
-            <div class="user-input">
-                <input id="user-msg" type="text" placeholder="Type a message...">
-                <button type="button" id="user-send"><span class="material-icons">
-                        send
-                    </span>
-                </button>
+            <div class="chat-box">
+                <div class="chats">
+                </div>
+                <div class="user-input">
+                    <input id="user-msg" type="text" placeholder="Type a message...">
+                    <button type="button" id="user-send"><span class="material-icons">
+                            send
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
 </main>
@@ -45,6 +48,7 @@
             uwindow.style.display = 'block';
         }
     }
+    var user_data;
     const socket = io()
     const chats = document.querySelector(".chats")
     const user_list = document.querySelector(".users-list")
@@ -52,7 +56,8 @@
     const msg_send = document.querySelector("#user-send")
     const user_msg = document.querySelector("#user-msg")
 
-    socket.emit("new-user-joined", `{{ Username }}`)
+
+    socket.emit("new-user-joined", `{{ username }}`)
 
     socket.on('user-connected', (socket_name) => {
         userJoinLeft(socket_name, "joined")
@@ -73,8 +78,9 @@
     })
 
     socket.on('user-list', (users) => {
+        user_data = users
         user_list.innerHTML = ""
-        users_arr = Object.values(users)
+        users_arr = Object.keys(users)
         for (i = 0; i < users_arr.length; i++) {
             let p = document.createElement('p');
             p.innerHTML = users_arr[i];
@@ -86,13 +92,28 @@
 
     msg_send.addEventListener("click", () => {
         let data = {
-            user: `{{ Username }}`,
+            user: `{{ username }}`,
             msg: user_msg.value
         };
         if (user_msg.value != '') {
-            appendMessage(data, "outgoing")
-            socket.emit("message", data)
-            user_msg.value = ''
+            if (data.msg[0] == '/') {
+                let receiver = data.msg.split(' ')[1]
+                let senderId = user_data[receiver]
+                if (senderId) {
+                    data['to'] = senderId
+                    socket.emit('private-message', data)
+                    appendMessage(data, "outgoing")
+                    user_msg.value = ''
+                }
+                else {
+                    alert("User not found")
+                }
+            }
+            else {
+                appendMessage(data, "outgoing")
+                socket.emit("message", data)
+                user_msg.value = ''
+            }
         }
     })
 
@@ -115,7 +136,7 @@
         time = getTime()
         let content = `
         <div class="user_message">
-        <h4>${data.msg}</h4>
+        <h5>${data.msg}</h5>
         <h6>${data.user} <br>${time}</h6>
         </div>
             `;
@@ -125,6 +146,10 @@
     }
 
     socket.on('message', (data) => {
+        appendMessage(data, "incoming")
+    })
+
+    socket.on('private-message', (data) => {
         appendMessage(data, "incoming")
     })
 

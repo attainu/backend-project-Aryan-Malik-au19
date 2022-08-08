@@ -1,9 +1,9 @@
 <div class="cover">
     <div class="form-container">
-        <h1 class="text-center display-5">login</h1>
+        <h1 class="text-center display-5">Log in</h1>
         <div class="d-flex justify-content-center align-items-center">
-            <form action="/login" method="POST" enctype="multipart/form-data">
-                <div class="mb-3" >
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
                     <label for="emailId" class="form-label">Email address</label>
                     <input type="email" name="email" class="form-control" id="emailId" required>
                 </div>
@@ -11,10 +11,10 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="password" required>
                 </div>
-                <center>
-                    <button type="submit" class="btn btn-primary mb-2">Login</button><br>
-                    <a href="/signup">Create an account</a>
-                </center>
+                <div class="d-flex flex-column align-items-center" style="color:lightgray">
+                    <button type="submit" class="btn btn-primary w-50 mb-2">Login</button>Don't have an account?
+                    <a href="/signup">Sign up</a>
+                </div>
             </form>
         </div>
     </div>
