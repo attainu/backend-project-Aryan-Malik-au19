@@ -77,7 +77,21 @@ main {
             z-index: 99;
             box-shadow: 0px 10px 50px 5px #000000;
             @include flexing(row, space-between, center);
-        
+            
+            .logout{
+                width: 150px;
+                height: inherit;
+                display: flex;
+                background-color: #196c63;
+                text-decoration: none;
+                color: white;
+                justify-content: center;
+                align-items: center;
+                &:hover{
+                    background-color: #19556c;
+                }
+            }
+            
             .menu {
                 color: white;
                 padding-right: 10px;
@@ -95,7 +109,7 @@ main {
                 }
             }
     
-            button {
+            .dropdown {
                 background-color: transparent;
                 border: none;
                 outline: none;
@@ -111,17 +125,19 @@ main {
 
             div.users-head {
                 @include flexing(row, space-between, center);
-                margin-bottom: 15px;
                 background-color: #196c63;
                 padding: 5px 10px 0px 10px;
             }
 
-            div.users-list p {
-                margin-left: 10px;
-                font-size: 0.9rem;
-                letter-spacing: 0.5px;
-                margin-bottom: 15px !important;
-            }
+            div.users-list{
+                overflow-y: scroll;
+                .user-data{
+                    @include flexing(row, space-between, center);
+                    padding: 5px 10px;
+                    height: 50px;
+                    border-bottom: 1px solid #0E1621;
+                }
+            } 
         }
 
         div.chat-window {
@@ -162,7 +178,7 @@ main {
                     .user_message {
                         @include flexing(row-reverse, space-between, center);
                         color: black;
-                        background-color: white;
+                        background-color: #ffffffa9;
                         border-radius: 15px 15px 15px 0px;
                         text-align: right;
                         margin: 5px 10px 0 10px;
@@ -170,10 +186,10 @@ main {
                         animation: fadeOut 0.5s ease-in-out;
                         @keyframes fadeOut {
                             0% {
-                                transform: translateX(0%);
+                                transform: translateX(-100%);
                             }
                             100% {
-                                transform: translateX(100%);
+                                transform: translateX(0%);
                             }
                         }
 

@@ -42,7 +42,7 @@ p {
 }
 
 .cover .form-container a {
-  color: #0d11fd;
+  color: #0dfde9;
   text-decoration: none;
 }
 
@@ -97,6 +97,27 @@ main .container .header {
           justify-content: space-between;
 }
 
+main .container .header .logout {
+  width: 150px;
+  height: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #196c63;
+  text-decoration: none;
+  color: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .container .header .logout:hover {
+  background-color: #19556c;
+}
+
 main .container .header .menu {
   color: white;
   padding-right: 10px;
@@ -126,7 +147,7 @@ main .container .header div.title h1 {
   margin-bottom: 0 !important;
 }
 
-main .container .header button {
+main .container .header .dropdown {
   background-color: transparent;
   border: none;
   outline: none;
@@ -154,16 +175,31 @@ main .container div.users-window div.users-head {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 15px;
   background-color: #196c63;
   padding: 5px 10px 0px 10px;
 }
 
-main .container div.users-window div.users-list p {
-  margin-left: 10px;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px !important;
+main .container div.users-window div.users-list {
+  overflow-y: scroll;
+}
+
+main .container div.users-window div.users-list .user-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px 10px;
+  height: 50px;
+  border-bottom: 1px solid #0E1621;
 }
 
 main .container div.chat-window {
@@ -259,7 +295,7 @@ main .container div.chat-window div.chats div.incoming .user_message {
       -ms-flex-pack: justify;
           justify-content: space-between;
   color: black;
-  background-color: white;
+  background-color: #ffffffa9;
   border-radius: 15px 15px 15px 0px;
   text-align: right;
   margin: 5px 10px 0 10px;
@@ -270,23 +306,23 @@ main .container div.chat-window div.chats div.incoming .user_message {
 
 @-webkit-keyframes fadeOut {
   0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%);
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
   100% {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 
 @keyframes fadeOut {
   0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%);
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
   100% {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 

@@ -1,12 +1,13 @@
 <main>
-
     <div class="container" style="max-width: 100%;">
         <div class="header">
             <div class="title">
-                <img src="./icon/logo.png" width="35px">
-                <h1>TEXTIT</h1>
+                <img src="./icon/logo.svg" style='filter: invert(100%);' width="110px">
             </div>
-            <button type="button" onclick="show_hide()">
+            <a href="/logout" class="logout">
+                Logout
+            </a>
+            <button type="button" class="dropdown" onclick="show_hide()">
                 <span class="material-icons menu">
                     menu
                 </span>
@@ -39,7 +40,27 @@
 </script>
 
 <script>
-    var uwindow = document.querySelector('.users-window');
+    var user_data;
+    var receiverId;
+    const socket = io()
+    const uwindow = document.querySelector('.users-window');
+    const chats = document.querySelector(".chats")
+    const user_list = document.querySelector(".users-list")
+    const user_count = document.querySelector(".users-count")
+    const msg_send = document.querySelector("#user-send")
+    const user_msg = document.querySelector("#user-msg")
+    const cookie = document.cookie
+
+
+    if (cookie.includes(`email`)) {
+        console.log(cookie)
+        socket.emit("new-user-joined", `{{ username }}`)
+    }
+    else {
+        window.location.href = "/"
+
+    }
+
     function show_hide() {
         if (uwindow.style.display == 'block') {
             uwindow.style.display = 'none';
@@ -48,20 +69,6 @@
             uwindow.style.display = 'block';
         }
     }
-    var user_data;
-    const socket = io()
-    const chats = document.querySelector(".chats")
-    const user_list = document.querySelector(".users-list")
-    const user_count = document.querySelector(".users-count")
-    const msg_send = document.querySelector("#user-send")
-    const user_msg = document.querySelector("#user-msg")
-
-
-    socket.emit("new-user-joined", `{{ username }}`)
-
-    socket.on('user-connected', (socket_name) => {
-        userJoinLeft(socket_name, "joined")
-    })
 
     function userJoinLeft(name, status) {
         const div = document.createElement("div")
@@ -73,22 +80,6 @@
     }
 
 
-    socket.on('user-disconnected', (user) => {
-        userJoinLeft(user, "left")
-    })
-
-    socket.on('user-list', (users) => {
-        user_data = users
-        user_list.innerHTML = ""
-        users_arr = Object.keys(users)
-        for (i = 0; i < users_arr.length; i++) {
-            let p = document.createElement('p');
-            p.innerHTML = users_arr[i];
-            user_list.appendChild(p);
-        }
-        user_count.innerHTML = users_arr.length;
-    })
-
 
     msg_send.addEventListener("click", () => {
         let data = {
@@ -96,18 +87,12 @@
             msg: user_msg.value
         };
         if (user_msg.value != '') {
-            if (data.msg[0] == '/') {
-                let receiver = data.msg.split(' ')[1]
-                let senderId = user_data[receiver]
-                if (senderId) {
-                    data['to'] = senderId
-                    socket.emit('private-message', data)
-                    appendMessage(data, "outgoing")
-                    user_msg.value = ''
-                }
-                else {
-                    alert("User not found")
-                }
+            console.log(receiverId)
+            if (receiverId) {
+                data['to'] = receiverId
+                appendMessage(data, "outgoing")
+                socket.emit('private-message', data)
+                user_msg.value = ''
             }
             else {
                 appendMessage(data, "outgoing")
@@ -142,6 +127,50 @@
             `;
         div.innerHTML = content;
         chats.appendChild(div);
+        chats.scrollTop = chats.scrollHeight;
+    }
+
+
+    socket.on('user-connected', (socket_name) => {
+        userJoinLeft(socket_name, "joined")
+    })
+
+    socket.on('user-disconnected', (user) => {
+        userJoinLeft(user, "left")
+    })
+
+    socket.on('user-list', (users) => {
+        user_data = users
+        user_list.innerHTML = ""
+        users_arr = Object.keys(users)
+        for (i = 0; i < users_arr.length; i++) {
+            let div = document.createElement('div');
+            div.classList.add("user-data");
+            div.setAttribute('onclick', 'privateChat(this)')
+            div.innerHTML = `${users_arr[i]} <img src="./icon/active.svg" style='filter: invert(50%) sepia(100%) 
+            saturate(1000%) hue-rotate(87deg) brightness(200%) blur(1.5px);' width="15px">`;
+            user_list.appendChild(div);
+        }
+        user_count.innerHTML = users_arr.length;
+    })
+
+    function privateChat(Udata) {
+        let status;
+        if (receiverId) {
+            status = 'ended'
+            Udata.style.backgroundColor = "transparent";
+            receiverId = null
+        }
+        else {
+            status = "started"
+            Udata.style.backgroundColor = "#196c628e";
+            receiverId = user_data[Udata.innerText]
+        }
+        const div = document.createElement("div")
+        div.classList.add("user-join")
+        let content = `Private Chat with ${Udata.innerText} ${status}`;
+        div.innerHTML = content;
+        chats.appendChild(div)
         chats.scrollTop = chats.scrollHeight;
     }
 

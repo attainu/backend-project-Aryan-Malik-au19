@@ -11,7 +11,7 @@ const http = require("http")
 const mongoose = require('mongoose');
 const server = http.createServer(app);
 const io = require("socket.io")(server);
-const port = process.env.PORT ||5000;
+const port = process.env.PORT || 5000;
 const mongoURl = process.env.URL
 const url = require('url');
 const users = {}
@@ -62,10 +62,8 @@ io.on("connection", (socket) => {
 
     socket.on('private-message', async (data) => {
         var user = Object.keys(users).find(key => users[key] === data.to);
-        console.log(user)
-        var message = data.msg.split(' ').slice(2, data.msg.length);
         if (user) {
-            io.to(data.to).emit("private-message", { user: data.user, msg: message.join(' '), time: Date.now() })
+            io.to(data.to).emit("private-message", { user: data.user, msg: data.msg, time: Date.now() })
         }
     }
     )
@@ -138,6 +136,11 @@ app.get('/profile', (req, res) => {
     else {
         res.redirect('/')
     }
+})
+
+app.get('/logout', async (req, res) => {
+    res.clearCookie('email')
+    res.redirect('/')
 })
 
 server.listen(port, () => console.log('Server Started at http://localhost:5000/'))

@@ -1,9 +1,10 @@
 <div class="cover">
     <div class="form-container">
-        <h1 class="text-center display-5">Log in</h1>
+
+        <h1 class="text-center display-5"><img src="./icon/logo.svg" style='filter: invert(100%);' width="200px"></h1>
         <div class="d-flex justify-content-center align-items-center">
             <form action="/" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
+                <div class="mb-3 mt-3">
                     <label for="emailId" class="form-label">Email address</label>
                     <input type="email" name="email" class="form-control" id="emailId" required>
                 </div>
@@ -12,8 +13,12 @@
                     <input type="password" name="password" class="form-control" id="password" required>
                 </div>
                 <div class="d-flex flex-column align-items-center" style="color:lightgray">
-                    <button type="submit" class="btn btn-primary w-50 mb-2">Login</button>Don't have an account?
-                    <a href="/signup">Sign up</a>
+
+                    <button type="submit" class="btn btn-primary w-50 mb-2">Login</button>
+                    <span>
+                        Don't have an account?
+                        <a href="/signup">Sign up</a>
+                    </span>
                 </div>
             </form>
         </div>
