@@ -2,15 +2,16 @@
     <div class="container" style="max-width: 100%;">
         <div class="header">
             <div class="title">
-                <img src="./icon/logo.svg" style='filter: invert(100%);' width="110px">
+                <img src="./icon/logo.svg" style='filter: invert(100%);' width="130px">
             </div>
-            <a href="/logout" class="logout">
-                Logout
-            </a>
+
             <button type="button" class="dropdown" onclick="show_hide()">
                 <span class="material-icons menu">
                     menu
                 </span>
+                <a href="/logout" class="logout">
+                    Logout
+                </a>
             </button>
         </div>
         <div class="chat-window">
@@ -69,7 +70,6 @@
             uwindow.style.display = 'block';
         }
     }
-
     function userJoinLeft(name, status) {
         const div = document.createElement("div")
         div.classList.add("user-join")

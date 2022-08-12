@@ -78,8 +78,11 @@ main .container {
 main .container .header {
   background-color: #10151a;
   color: #fff;
-  height: 40px;
+  height: 50px;
   z-index: 99;
+  position: absolute;
+  top: 0;
+  width: 100%;
   -webkit-box-shadow: 0px 10px 50px 5px #000000;
           box-shadow: 0px 10px 50px 5px #000000;
   display: -webkit-box;
@@ -148,13 +151,34 @@ main .container .header div.title h1 {
 }
 
 main .container .header .dropdown {
+  gap: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+main .container .header .dropdown .menu {
   display: none;
 }
 
 main .container div.users-window {
+  margin-top: 50px;
   width: 350px;
   color: #fff;
   z-index: 100;
@@ -216,7 +240,6 @@ main .container div.chat-window {
   -webkit-box-pack: normal;
       -ms-flex-pack: normal;
           justify-content: normal;
-  height: 38.55em;
   width: 100%;
   background-size: cover;
 }
@@ -235,6 +258,7 @@ main .container div.chat-window div.chat-box {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  height: 100vh;
   background-image: url("https://images.unsplash.com/photo-1622737133809-d95047b9e673?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80");
   background-size: cover;
   background-position: center;
@@ -437,6 +461,9 @@ main .container div.chat-window div.user-input {
   -webkit-box-pack: normal;
       -ms-flex-pack: normal;
           justify-content: normal;
+  position: fixed;
+  bottom: 0;
+  width: 74.5%;
 }
 
 main .container div.chat-window div.user-input #user-msg {
@@ -472,16 +499,19 @@ main .container div.chat-window div.user-input button {
 
 @media screen and (max-width: 900px) {
   .cover .form-container {
-    width: 80% !important;
+    width: 90% !important;
+  }
+  .cover .form-container form {
+    width: 100%;
   }
   main {
     width: 95%;
   }
-  main header button {
-    display: block;
-  }
   main div.container {
     position: relative;
+  }
+  main div.container .header .dropdown .menu {
+    display: block;
   }
   main div.container div.users-window {
     position: absolute;
@@ -498,8 +528,8 @@ main .container div.chat-window div.user-input button {
     padding-bottom: 0;
     display: none;
   }
-  main div.container div.chat-window div.chats {
-    min-height: 88.5vh;
+  main div.container div.chat-window div.chat-box {
+    background-image: url("https://img.wallpapersafari.com/phone/1080/1920/19/15/HlpKYq.png");
   }
   main div.container div.chat-window div.chats div.message {
     max-width: -webkit-fit-content;
@@ -511,6 +541,9 @@ main .container div.chat-window div.user-input button {
   }
   main div.container div.chat-window div.chats div.outgoing {
     padding: 5px 10px 5px 55px;
+  }
+  main div.container div.chat-window div.user-input {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=style.css.map */
