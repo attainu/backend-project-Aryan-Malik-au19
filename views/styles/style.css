@@ -268,6 +268,7 @@ main .container div.chat-window div.chat-box {
 }
 
 main .container div.chat-window div.chats {
+  margin-top: 50px;
   height: 86.5vh;
   padding: 20px;
   overflow-y: scroll;
@@ -530,6 +531,9 @@ main .container div.chat-window div.user-input button {
   }
   main div.container div.chat-window div.chat-box {
     background-image: url("https://img.wallpapersafari.com/phone/1080/1920/19/15/HlpKYq.png");
+  }
+  main div.container div.chat-window div.chats {
+    padding: 20px 0px 20px 0px;
   }
   main div.container div.chat-window div.chats div.message {
     max-width: -webkit-fit-content;

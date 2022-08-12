@@ -177,6 +177,7 @@ main {
             }
 
             div.chats {
+                margin-top: 50px;
                 height: 86.5vh;
                 padding: 20px;
                 overflow-y: scroll;
@@ -368,6 +369,7 @@ main {
                 }
 
                 div.chats {
+                    padding: 20px 0px 20px 0px;
 
                     div.message {
                         max-width: fit-content;
